@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shadow Runner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="main.js"></script>
+  <link rel="icon" href="Green_Guy.png">
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center text-white bg-gradient-to-b from-gray-900 to-gray-800">
+
+  <!-- Start Screen -->
+  <div id="startScreen" class="absolute inset-0 flex flex-col items-center justify-center gap-5 z-20">
+    <h1 class="text-4xl font-bold">Shadow Runner</h1>
+    <p class="text-center text-sm text-gray-300 max-w-xs">
+      Use Arrow Up / Arrow Down to move. On mobile use the buttons. Help Green Guy dodge all shadows and try to get the highest score!
+    </p>
+    <button id="startBtn" class="px-6 py-3 text-lg rounded-md bg-green-500 hover:bg-green-600 transition">
+      Start Game
+    </button>
+    <p class="mt-4 text-gray-400">Best Score: <span id="bestScore">0</span></p>
+  </div>
+
+  <!-- Game Area -->
+  <div id="game" class="relative w-[400px] h-[600px] border-4 border-white overflow-hidden hidden">
+
+    <!-- Lanes -->
+    <div class="absolute inset-0 pointer-events-none flex flex-col">
+      <div class="h-[60px]"></div>
+      <div class="h-[60px]"></div>
+      <div class="h-[60px]"></div>
+      <div class="h-[60px]"></div>
+      <div class="h-[60px]"></div>
+      <div class="h-[60px]"></div>
+      <div class="h-[60px]"></div>
+      <div class="h-[60px]"></div>
+      <div class="h-[60px]"></div>
+      <div class="h-[60px]"></div>
+    </div>
+
+    <!-- Score -->
+    <div id="score" class="absolute top-3 left-3 text-lg font-semibold z-50 drop-shadow-lg text-white">Score: 0</div>
+
+    <!-- Player -->
+    <div id="player" class="absolute left-8 w-10 h-10 rounded-md border-2 border-green-700 bg-gradient-to-b from-green-400 to-green-600 flex items-center justify-center shadow-lg"
+    style="top:280px; transition: top 0.1s ease-in-out, transform 0.1s ease;">
+        <div id="eyeLeft" class="absolute left-2 top-2 w-2 h-2 bg-black rounded-full"></div>
+        <div id="eyeRight" class="absolute right-2 top-2 w-2 h-2 bg-black rounded-full"></div>
+        <div id="mouth" class="absolute bottom-2 w-4 h-1 bg-black rounded"></div>
+    </div>
+
+    <!-- Game Over Panel -->
+    <div id="gameOverPanel" class="absolute inset-0 hidden flex-col items-center justify-center space-y-4 bg-black bg-opacity-80 z-30 opacity-0 transition-opacity duration-500">
+      <div class="text-5xl font-extrabold text-red-500 drop-shadow-lg animate-bounce">Game Over</div>
+      <div id="finalScore" class="text-2xl font-semibold text-white"></div>
+      <div id="highScoreBadge" class="text-green-400 font-bold text-lg hidden animate-pulse">New High Score!</div>
+      <div class="flex gap-4 mt-2">
+        <button id="restartBtn" class="px-6 py-3 bg-green-500 hover:bg-green-600 rounded-lg font-bold shadow-md transition">Restart</button>
+        <button id="menuBtn" class="px-6 py-3 bg-gray-600 hover:bg-gray-700 rounded-lg font-bold shadow-md transition">Main Menu</button>
+      </div>
+    </div>
+
+    <!-- Mobile Controls Platform -->
+    <div id="mobileControls" class="absolute bottom-0 w-full  bg-black bg-opacity-50 flex justify-center items-center p-3 gap-6 md:hidden h-[100px]">
+        <button id="upBtn" class="w-24 h-24 text-5xl font-extrabold bg-gray-700 rounded-lg shadow-lg">↑</button>
+        <button id="downBtn" class="w-24 h-24 text-5xl font-extrabold bg-gray-700 rounded-lg shadow-lg">↓</button>
+    </div>
+
+
+    <!-- Audio -->
+    <audio id="bgMusic" src="stereo_madness.mp3" loop></audio>
+    <audio id="deathMusic" src="geometry_dash_death.mp3"></audio>
+  </div>
+</body>
+</html>
